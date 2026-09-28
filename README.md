@@ -63,7 +63,7 @@ bsk browsers --json    # 期望看到 "version_skew": false
 ## 安装
 
 ```bash
-git clone https://github.com/<你的用户名>/cuhk-blackboard-sync.git
+git clone https://github.com/mzsuen-tech/cuhk-blackboard-sync.git
 cd cuhk-blackboard-sync
 ./install.sh                      # 默认装到 ~/.workbuddy/skills/
 ```
