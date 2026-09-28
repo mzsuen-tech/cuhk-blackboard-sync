@@ -109,7 +109,8 @@ except Exception:
         # Chrome 的下载策略要求真实用户手势，合成点击会被拦截，文件不会落盘。
         # 路径：observe 找 "<文件名> 的更多选项"按钮 → bsk click 展开菜单 →
         #       observe 找 menuitem "下载" → bsk click 触发下载。
-        MORE=$("${BSK[@]}" observe --session "$SESSION_ID" 2>&1 | grep -m1 "button \"${fname} 的更多选项" | sed -E 's/^.*(@e[0-9]+).*$/\1/')
+        # 注意：文件名当正则用会炸（如含 ( ) [ ] 的文件名），必须用 grep -F 字面匹配
+        MORE=$("${BSK[@]}" observe --session "$SESSION_ID" 2>&1 | grep -m1 -F "button \"${fname} 的更多选项" | sed -E 's/^.*(@e[0-9]+).*$/\1/')
         if [ -z "$MORE" ]; then
           echo "  ⚠ 未找到"更多选项"按钮: ${fname}"
           continue

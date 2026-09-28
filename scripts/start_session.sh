@@ -14,6 +14,13 @@ set -u
 
 export BSK_HOME=/tmp/bsk_home BSK_AUTO_START=0
 
+# 若已有 daemon 在跑，先停掉再清状态目录——直接在运行中的 daemon 脚下 rm 状态文件
+# 会让它持有的句柄指向已删除的文件，后续命令行为不可预期。
+if pgrep -f "bsk daemon" >/dev/null 2>&1; then
+  bsk daemon stop >/dev/null 2>&1 || true
+  sleep 1
+fi
+
 rm -rf /tmp/bsk_home
 bsk daemon start >/dev/null 2>&1
 sleep 3

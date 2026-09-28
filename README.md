@@ -82,6 +82,14 @@ cp -r SKILL.md config.example.json scripts references \
 
 ## 快速开始
 
+### 第零步：环境自检
+
+```bash
+./scripts/doctor.sh
+```
+
+逐项检查bsk、daemon、扩展、配置与凭据方式，每项都带修复建议。全绿（允许有WARN）再往下走。
+
 ### 第一步：写配置
 
 ```bash
@@ -107,11 +115,11 @@ cp config.example.json config.json
 打开课程，看浏览器地址栏：
 
 ```
-https://blackboard.cuhk.edu.hk/ultra/courses/_272211_1/outline
+https://blackboard.cuhk.edu.hk/ultra/courses/_123456_1/outline
                                           ^^^^^^^^^ 
 ```
 
-`_272211_1`就是courseId。把它填进`config.json`的`course_ids`。这一步只影响`scan_all_courses.sh`（一次扫完全部课程），不填也能逐门课跑。
+`_123456_1`就是courseId。把它填进`config.json`的`course_ids`。这一步只影响`scan_all_courses.sh`（一次扫完全部课程），不填也能逐门课跑。
 
 ### 第三步：跑一次
 
@@ -127,10 +135,10 @@ cd ~/.workbuddy/skills/blackboard-course-download
 SID=$(./scripts/start_session.sh)          # 启动daemon + Chrome + session
 ./scripts/login.sh "$SID"                  # 登录（已有有效Cookie时自动跳过）
 
-./scripts/scan_course_items.sh "$SID" _272211_1 > /tmp/econ5012.json
+./scripts/scan_course_items.sh "$SID" _123456_1 > /tmp/course1.json
 python3 scripts/diff_seen.py \
     --registry ~/BlackboardArchive/.blackboard_sync/seen_files.json \
-    /tmp/econ5012.json                     # 看NEW_FILES有几项，通常是0
+    /tmp/course1.json                     # 看NEW_FILES有几项，通常是0
 
 ./scripts/fetch_announcements.sh "$SID" > "最新通知_$(date +%F).md"
 
@@ -161,6 +169,7 @@ cuhk-blackboard-sync/
 ├── config.example.json             # 配置模板，复制为config.json
 ├── install.sh                      # 安装脚本
 ├── scripts/
+│   ├── doctor.sh                   # 环境自检（装完先跑这个）
 │   ├── start_session.sh            # 一键启动/停止环境
 │   ├── stop_session.sh
 │   ├── login.sh                    # OnePass登录（凭据不落盘）
@@ -205,6 +214,7 @@ Skill本身不存储任何凭据。`login.sh`从环境变量或`read -s`交互�
 
 | 现象 | 原因与处理 |
 |---|---|
+| 不知道环境哪里没配好 | 跑`./scripts/doctor.sh`，逐项给出修复建议 |
 | `bsk daemon start`报`write daemon.json` | macOS沙箱限制。所有`scripts/*.sh`已内置`BSK_HOME=/tmp/bsk_home`绕开；手动执行`bsk`命令时需自行加此前缀 |
 | 扩展连不上，`bsk browsers`为空 | 协议版本不一致。检查`chrome://extensions`与`bsk --version` |
 | 扫描结果为空 | 通常是漏了`BSK_HOME`（脚本会静默扫到0项而非报错）。用`scripts/*.sh`而非手敲命令 |

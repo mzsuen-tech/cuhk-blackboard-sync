@@ -293,8 +293,8 @@ python3 scripts/organize_files.py --config config.json --course ECON5022 "Lectur
 
 ```bash
 ./scripts/fetch_announcements.sh <sessionId> > "最新通知_$(date +%F).md" <<'EOF'
-_272226_1	Econometric Analysis and Applications (ECON5122)
-_272216_1	Macroeconomic Analysis and Applications (ECON5022)
+_123456_1	Course Name A (ECONXXXX)
+_234567_1	Course Name B (ECONYYYY)
 EOF
 ```
 
@@ -479,6 +479,7 @@ MD5一致"的文件：
 
 | 脚本 | 作用 |
 |---|---|
+| `scripts/doctor.sh` | 环境自检：bsk/daemon/扩展/config/凭据逐项检查并给修复建议 |
 | `scripts/start_session.sh` | 一键启动daemon + Chrome + session，输出session_id；自带BSK_HOME默认值 |
 | `scripts/stop_session.sh` | 停止会话与daemon，输出清理结果 |
 | `scripts/login.sh` | OnePass登录（环境变量或交互式取密码，不落盘） |

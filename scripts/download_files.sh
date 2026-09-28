@@ -8,7 +8,7 @@
 #   _7420393_1	EAA R Questions 1.pdf
 #   EOF
 #
-#   <courseId>   the numeric Blackboard course id, e.g. _272216_1
+#   <courseId>   the numeric Blackboard course id, e.g. _234567_1
 #   <sessionId>  the active bsk session id (from `bsk session start --json`)
 #   [host]       optional Blackboard host, default blackboard.cuhk.edu.hk
 #

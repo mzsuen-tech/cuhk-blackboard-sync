@@ -4,7 +4,7 @@
 #
 # 用法: ./scan_course_items.sh <sessionId> <courseId> [host]
 #   <sessionId>  活动 bsk session id
-#   <courseId>   Blackboard 课程内部 id，如 _272211_1
+#   <courseId>   Blackboard 课程内部 id，如 _123456_1
 #
 # 输出: JSON 数组，每项 {"t": 显示名, "type": file|assessment|other, "h": URL}
 #

@@ -4,7 +4,7 @@
 #
 # 用法: ./fetch_assessments.sh <sessionId> <courseId> [host]
 #   <sessionId>  活动 bsk session id
-#   <courseId>   Blackboard 课程内部 id，如 _272211_1
+#   <courseId>   Blackboard 课程内部 id，如 _123456_1
 #
 # 输出: Markdown 表格（标题 / 到期时间 / 满分 / 剩余尝试 / 链接）
 #       课程内没有线上评估时明确输出"无线上评估项"。
@@ -66,8 +66,8 @@ while IFS= read -r u <&3; do
   "${BSK[@]}" navigate "$u" --session "$SESSION_ID" --timeout 30s >/dev/null 2>&1
   sleep 7
   "${BSK[@]}" evaluate --session "$SESSION_ID" \
-    "(document.body.innerText||'').replace(/\n{3,}/g,'\n')" 2>&1 | python3 -c "
-import sys, re
+    "(document.body.innerText||'').replace(/\n{3,}/g,'\n')" 2>&1 | U="$u" python3 -c "
+import sys, re, os
 t = sys.stdin.read()
 lines = [l.strip() for l in t.split('\n') if l.strip()]
 # 结构: [0]跳至主要内容 [1]课程名 [2]评估标题 [3]评估标题(重复) [4]详细信息 ...
@@ -81,7 +81,7 @@ for i, l in enumerate(lines):
     m = re.search(r'(剩余\s*\d+\s*次尝试|无剩余尝试|不限制)', l)
     if m and not att:
         att = m.group(1)
-print('| %s | %s | %s | %s | %s |' % (title, due or '-', score or '-', att or '-', '$u'))
+print('| %s | %s | %s | %s | %s |' % (title, due or '-', score or '-', att or '-', os.environ['U']))
 "
 done 3< "$TMP"
 

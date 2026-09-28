@@ -27,9 +27,10 @@ if [ ! -f "$CONFIG" ]; then
 fi
 
 TMP=$(mktemp)
-python3 -c "
-import json, sys
-cfg = json.load(open('$CONFIG'))
+# 通过环境变量传路径，避免路径含引号时字符串插值炸掉
+CONFIG="$CONFIG" python3 -c "
+import json, sys, os
+cfg = json.load(open(os.environ['CONFIG']))
 ids = cfg.get('course_ids', {})
 if not ids:
     sys.stderr.write('config.json 中缺少 course_ids\n')

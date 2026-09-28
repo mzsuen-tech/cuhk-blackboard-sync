@@ -4,8 +4,8 @@
 #
 # 用法:
 #   ./fetch_announcements.sh <sessionId> [host] <<'EOF'
-#   _272226_1	Econometric Analysis and Applications (ECON5122)
-#   _272216_1	Macroeconomic Analysis and Applications (ECON5022)
+#   _123456_1	Course Name A (ECONXXXX)
+#   _234567_1	Course Name B (ECONYYYY)
 #   EOF
 #
 #   <sessionId>  活动的 bsk session id（`bsk session start --json` 返回）

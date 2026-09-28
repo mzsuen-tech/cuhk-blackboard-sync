@@ -4,7 +4,7 @@
 #
 # 用法: ./enumerate_course.sh <sessionId> <courseId> [host]
 #   <sessionId>  活动 bsk session id
-#   <courseId>   Blackboard 课程内部 id，如 _272226_1
+#   <courseId>   Blackboard 课程内部 id，如 _123456_1
 #
 # 输出: JSON 数组，每项 {"t": 显示名, "h": 文件预览页 URL}
 #
