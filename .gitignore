@@ -1,0 +1,36 @@
+# 个人配置与运行时状态：绝不提交
+config.json
+seen_files.json
+.blackboard_sync/
+最新通知_*.md
+
+# 本地归档（若 archive_root 设在仓库内）
+BlackboardArchive/
+archive/
+
+# 凭据类文件（兜底）
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+id_rsa*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 日志与临时产物
+*.log
+/tmp_*

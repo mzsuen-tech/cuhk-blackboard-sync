@@ -1,0 +1,52 @@
+{
+  "_readme": "归档配置。复制本文件为 config.json 后按自己的课程修改。config.json 已被 .gitignore 忽略，不会误提交。",
+
+  "_archive_root": "课件归档根目录。下面所有脚本的默认下载目录是 ~/Downloads，归档后文件会移动到 <archive_root>/<课程目录名>/<分类目录>/。",
+  "archive_root": "~/BlackboardArchive",
+
+  "_courses": "Blackboard 课程代码 -> 本地归档目录名。键就是你在课程页看到的代码，值是本地文件夹名。",
+  "courses": {
+    "ECON5012": "Micro Economics",
+    "ECON5022": "Macro Economics",
+    "ECON5102": "Maths Analysis",
+    "ECON5122": "Econometrics Applications"
+  },
+
+  "_course_ids": "Blackboard 课程内部 ID，形如 _123456_1。获取方法：打开课程 → 看浏览器地址栏 /ultra/courses/_123456_1/outline，中间那段就是。scan_all_courses.sh 用它一次扫完全部课程。新增课程时 courses 与 course_ids 两处都要补。",
+  "course_ids": {
+    "ECON5012": "_000000_1",
+    "ECON5022": "_000000_1",
+    "ECON5102": "_000000_1",
+    "ECON5122": "_000000_1"
+  },
+
+  "_rules": "分类规则，按顺序匹配，命中即停。keywords 匹配文件名小写子串，extensions 匹配扩展名。改成本人习惯的中文/英文目录名都可以。",
+  "rules": [
+    {
+      "folder": "大纲",
+      "keywords": ["syllabus", "outline"]
+    },
+    {
+      "folder": "数据",
+      "extensions": [".xls", ".xlsx", ".csv", ".dta", ".rdata", ".rds", ".do", ".sav"]
+    },
+    {
+      "folder": "习题",
+      "keywords": ["tutorial", "problem set", "quiz", "homework", "assignment", "exercise", "sample", "group", "ps1", "ps2", "ps3", "ps4", "ps5", "ps6"]
+    },
+    {
+      "folder": "R上机",
+      "keywords": ["getting started", "matlab", "r questions", "r part", "r documents"]
+    },
+    {
+      "folder": "讲义",
+      "keywords": ["lecture", "notes", "slides"],
+      "extensions": [".pdf", ".pptx", ".ppt", ".docx", ".doc"]
+    }
+  ],
+
+  "fallback_folder": "其他",
+
+  "_translate_announcements_to_chinese": "为 true 时，通知汇总里的公告正文翻译成简体中文（默认开启）。",
+  "translate_announcements_to_chinese": true
+}
