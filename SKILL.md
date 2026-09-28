@@ -25,6 +25,8 @@ Step 7。
 
 ## Prerequisites
 
+> ⚠️ **本skill不能独立运行。** 所有浏览器操作都经`browser-skill`的`bsk`完成。下面三项缺一不可，任一项缺失脚本会在 Step 1 直接失败：① 客户端可用的`browser-skill`技能 ②`bsk`CLI ③ Chrome上的BrowserSkill扩展且已启用。先用`scripts/doctor.sh`自检。
+
 ### 1. browser-skill工具链
 
 - **Chrome扩展BrowserSkill** — 从Chrome应用商店安装并启用；在`chrome://extensions`
@@ -38,8 +40,10 @@ Step 7。
   真正的判据是`bsk browsers --json`里的`version_skew: false`，且
   `extension_protocol_version`与`protocol_version`一致。协议版本不一致时扩展会**静默连不上**。
 
-先加载`browser-skill` skill以获取`bsk`子命令（`daemon` / `session` / `navigate` /
-`observe` / `click` / `evaluate` / `fill`）的完整参数参考。
+先加载`browser-skill`技能以获取`bsk`子命令（`daemon` / `session` / `navigate` /
+`observe` / `click` / `evaluate` / `fill`）的完整参数参考。WorkBuddy通常已内置该技能；
+若客户端没有，先从技能市场安装。本文件已列出本流程实际用到的全部子命令与参数，
+在确实拿不到该技能时也可照此独立执行。
 
 ### 2. 配置
 

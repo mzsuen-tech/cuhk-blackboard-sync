@@ -6,6 +6,16 @@ Syncing CUHK Blackboard Ultra course materials through your own logged-in Chrome
 
 这是一个面向香港中文大学经济系同学的Skill，配合支持Skill的AI Agent客户端（如WorkBuddy）使用。
 
+**硬性前提：本Skill不能独立运行。**
+
+它对Blackboard的全部操作，都是通过[BrowserSkill](https://github.com/Tencent/BrowserSkill)（`bsk`命令行 + Chrome扩展）借用你自己已登录的Chrome完成的。下面三件事缺一不可，任一缺失脚本都会在第一步直接失败：
+
+1. `browser-skill`技能 —— 提供浏览器操作的规范用法。WorkBuddy通常已内置；若你的客户端没有，从技能市场安装，或在对话里让Agent先加载它。
+2. `bsk`CLI —— 执行浏览器操作的工具链本体。
+3. Chrome上的BrowserSkill扩展，且处于启用状态。
+
+装好之后先跑`./scripts/doctor.sh`，它会逐项告诉你缺哪一项、怎么补。详见下方[前置条件](#前置条件)。
+
 ---
 
 ## 能做什么

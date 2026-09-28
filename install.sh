@@ -56,7 +56,12 @@ fi
 echo
 echo "安装完成。重启Agent客户端后本Skill即生效。"
 echo
+echo "★ 硬性前提提醒：本Skill不能独立运行，还需要 browser-skill（① browser-skill技能"
+echo "  （WorkBuddy通常内置）② bsk CLI ③ Chrome上的BrowserSkill扩展）。"
+echo "  缺哪一项，用 ./scripts/doctor.sh 一跑就知道。"
+echo
 echo "下一步:"
 echo "  1. cd \"$DEST\" && cp config.example.json config.json"
 echo "  2. 编辑 config.json，填入你的课程与归档目录"
-echo "  3. 对Agent说: 帮我同步一下Blackboard的课件和最新通知"
+echo "  3. ./scripts/doctor.sh   # 环境自检"
+echo "  4. 对Agent说: 帮我同步一下Blackboard的课件和最新通知"

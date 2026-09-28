@@ -17,7 +17,8 @@
 set -u
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
-CONFIG="$DIR/../config.json"
+BASE="$(cd "$DIR/.." && pwd)"
+CONFIG="$BASE/config.json"
 [ "${1:-}" = "--config" ] && CONFIG="${2:-$CONFIG}"
 
 PASS=0; FAIL=0; WARN=0
@@ -29,7 +30,8 @@ echo "== 1. bsk CLI =="
 if command -v bsk >/dev/null 2>&1; then
   ok "bsk 已安装: $(bsk --version 2>/dev/null | head -1)"
 else
-  bad "未找到 bsk。安装: curl -fsSL https://raw.githubusercontent.com/Tencent/BrowserSkill/main/install.sh | sh"
+  bad "未找到 bsk（本技能不能独立运行，bsk 是硬依赖）。安装: curl -fsSL https://raw.githubusercontent.com/Tencent/BrowserSkill/main/install.sh | sh"
+  warn "同时确认你的客户端里有 browser-skill 技能（WorkBuddy 通常内置；没有则从技能市场安装）"
 fi
 
 echo "== 2. daemon 与浏览器扩展 =="
@@ -78,7 +80,7 @@ if [ -f "$CONFIG" ]; then
     bad "config.json 不是合法 JSON——检查逗号/引号"
   fi
 else
-  warn "未找到 config.json。执行: cp \"$DIR/../config.example.json\" \"$CONFIG\" 后按自己的课程修改"
+  warn "未找到 config.json。执行: cp \"$BASE/config.example.json\" \"$CONFIG\" 后按自己的课程修改"
 fi
 
 echo "== 4. 凭据方式 =="
